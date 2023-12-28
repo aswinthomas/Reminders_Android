@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:text="Update Example Password" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:hint="Value">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="New Value" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>
