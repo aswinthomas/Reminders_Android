@@ -2,8 +2,19 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.RemindersApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnBackground">@color/lightgrey</item>
     </style>
 
     <style name="Theme.RemindersApp" parent="Base.Theme.RemindersApp" />
+    <style name="ReminderNameTextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="ReminderValueTextAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
 </resources>

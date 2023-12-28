@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_bin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_bin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="24dp">
+
+                <ImageView
+                    android:id="@+id/image_view_bin"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Trash Image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/baseline_restore_from_trash_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/text_view_bin_heading"
+                    style="@style/ReminderNameTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="Bin Day"
+                    app:layout_constraintStart_toEndOf="@id/image_view_bin"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_view_wifi_value"
+                    style="@style/ReminderValueTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintStart_toEndOf="@id/image_view_bin"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_bin_heading"
+                    tools:text="Friday" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_insurance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_view_bin">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_insurance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="24dp">
+
+                <ImageView
+                    android:id="@+id/image_view_insurance"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Person Image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/baseline_person_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/text_view_insurance_heading"
+                    style="@style/ReminderNameTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="National Insurance No."
+                    app:layout_constraintStart_toEndOf="@id/image_view_insurance"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_view_tablet_value"
+                    style="@style/ReminderValueTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintStart_toEndOf="@id/image_view_insurance"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_insurance_heading"
+                    tools:text="AB 12 34 56 N" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_anniversary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_view_insurance">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_anniversary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="24dp">
+
+                <ImageView
+                    android:id="@+id/image_view_anniversary"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Cake Image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/baseline_cake_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/text_view_anniversary_heading"
+                    style="@style/ReminderNameTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="Wedding Anniversary"
+                    app:layout_constraintStart_toEndOf="@id/image_view_anniversary"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_view_bike_value"
+                    style="@style/ReminderValueTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    app:layout_constraintStart_toEndOf="@id/image_view_anniversary"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_anniversary_heading"
+                    tools:text="25th December 2010" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
