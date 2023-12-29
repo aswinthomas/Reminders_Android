@@ -13,3 +13,6 @@
     <img src="general_night.png" width="270" />
     <img src="dialog_night.png" width="270" />
 </p>
+<p float="left">
+    <img src="icon.png" width="270" />
+</p>
