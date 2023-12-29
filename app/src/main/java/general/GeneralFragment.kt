@@ -1,23 +1,33 @@
 package general
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import com.aswindev.remindersapp.databinding.DialogUpdateBinding
 import com.aswindev.remindersapp.databinding.FragmentGeneralBinding
-import editvalue.EditValueFragment
-import passwords.PasswordsFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class GeneralFragment : Fragment() {
     companion object {
-        const val FILENAME = "passwords"
+        const val FILENAME = "general"
         const val BIN_STR = "Bin Day"
         const val INSURANCE_STR = "National Insurance No"
         const val ANNIVERSARY_STR = "Wedding Anniversary"
     }
+
     private lateinit var binding: FragmentGeneralBinding
+    private val preferences: SharedPreferences by lazy {
+        requireActivity().getSharedPreferences(
+            FILENAME,
+            Context.MODE_PRIVATE
+        )
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentGeneralBinding.inflate(inflater, container, false)
         return binding.root
@@ -34,9 +44,25 @@ class GeneralFragment : Fragment() {
         binding.containerAnniversary.setOnClickListener { launchPasswordEditScreen(ANNIVERSARY_STR) }
     }
 
-    private fun launchPasswordEditScreen(title: String) {
-        val dialog = EditValueFragment.newInstance(EditValueFragment.ScreenData(title, FILENAME))
-        dialog.show(parentFragmentManager, "UpdateDialog")
+    private fun launchPasswordEditScreen(record: String) {
+        val dialogBinding = DialogUpdateBinding.inflate(requireActivity().layoutInflater)
+        val title = "Update $record"
+        dialogBinding.editText.setText(preferences.getString(record,null))
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(title)
+            .setView(dialogBinding.root)
+            .setPositiveButton("Save") { _, _ ->
+                preferences.edit {
+                    putString(
+                        record,
+                        dialogBinding.editText.text.toString()
+                    )
+                }
+                displayValues()
+            }
+            .setNegativeButton("Cancel") { _, _ -> }
+            .show()
     }
 
     override fun onResume() {
@@ -45,9 +71,8 @@ class GeneralFragment : Fragment() {
     }
 
     private fun displayValues() {
-        val valuePreferences = requireContext().getSharedPreferences(FILENAME, Context.MODE_PRIVATE)
-        binding.textViewBinValue.text = valuePreferences.getString(BIN_STR, null)
-        binding.textViewInsuranceValue.text = valuePreferences.getString(INSURANCE_STR, null)
-        binding.textViewAnniversaryValue.text = valuePreferences.getString(ANNIVERSARY_STR, null)
+        binding.textViewBinValue.text = preferences.getString(BIN_STR, null)
+        binding.textViewInsuranceValue.text = preferences.getString(INSURANCE_STR, null)
+        binding.textViewAnniversaryValue.text = preferences.getString(ANNIVERSARY_STR, null)
     }
 }

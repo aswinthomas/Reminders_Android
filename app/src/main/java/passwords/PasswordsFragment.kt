@@ -1,13 +1,17 @@
 package passwords
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import com.aswindev.remindersapp.databinding.DialogUpdateBinding
 import com.aswindev.remindersapp.databinding.FragmentPasswordsBinding
-import editvalue.EditValueFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 class PasswordsFragment : Fragment() {
     companion object {
@@ -16,7 +20,11 @@ class PasswordsFragment : Fragment() {
         const val BIKE_STR = "Bike Lock"
         const val TABLET_STR = "Tablet PIN"
     }
+
     private lateinit var binding: FragmentPasswordsBinding
+    private val preferences: SharedPreferences by lazy {
+        requireActivity().getSharedPreferences(FILENAME, Context.MODE_PRIVATE)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentPasswordsBinding.inflate(inflater, container, false)
@@ -34,9 +42,24 @@ class PasswordsFragment : Fragment() {
         binding.containerTablet.setOnClickListener { launchPasswordEditScreen(TABLET_STR) }
     }
 
-    private fun launchPasswordEditScreen(title: String) {
-        val dialog = EditValueFragment.newInstance(EditValueFragment.ScreenData(title, FILENAME))
-        dialog.show(parentFragmentManager, "UpdateDialog")
+    private fun launchPasswordEditScreen(record: String) {
+        val title = "Update $record"
+        val dialogBinding = DialogUpdateBinding.inflate(requireActivity().layoutInflater)
+        dialogBinding.editText.setText(preferences.getString(record, null))
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(title)
+            .setView(dialogBinding.root)
+            .setPositiveButton("Save") { _, _ ->
+                preferences.edit {
+                    putString(
+                        record,
+                        dialogBinding.editText.text.toString()
+                    )
+                }
+                displayValues()
+            }
+            .setNegativeButton("Cancel") { _, _ -> }
+            .show()
     }
 
     override fun onResume() {
@@ -45,9 +68,8 @@ class PasswordsFragment : Fragment() {
     }
 
     private fun displayValues() {
-        val valuePreferences = requireContext().getSharedPreferences(FILENAME, Context.MODE_PRIVATE)
-        binding.textViewWifiValue.text = valuePreferences.getString(WIFI_STR, null)
-        binding.textViewBikeValue.text = valuePreferences.getString(BIKE_STR, null)
-        binding.textViewTabletValue.text = valuePreferences.getString(TABLET_STR, null)
+        binding.textViewWifiValue.text = preferences.getString(WIFI_STR, null)
+        binding.textViewBikeValue.text = preferences.getString(BIKE_STR, null)
+        binding.textViewTabletValue.text = preferences.getString(TABLET_STR, null)
     }
 }
